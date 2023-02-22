@@ -7,7 +7,14 @@
     <title>Document</title>
     <style>
       body {
-        background-color: black;
+        background-color: #fff;
+        color: #000;
+      }
+
+      /* Define dark mode styles */
+      body.dark-mode {
+        background-color: #000;
+        color: #fff;
       }
 
       dialog {
@@ -42,7 +49,8 @@
     </style>
   </head>
   <body>
-    <!-- <button>click</button> -->
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    <button id="modal-button">click</button>
     <dialog>
       Hello! I'm a modal!
       <form method="dialog">
@@ -52,13 +60,15 @@
     </dialog>
 
     <script>
+      const toggleButton = document.querySelector("#dark-mode-toggle");
+      const bodyElement = document.querySelector("body");
       const body = document.querySelector("body");
-      const button = document.querySelector("button");
+      const modalButton = document.querySelector("#modal-button");
       const dialog = document.querySelector("dialog");
 
       const MIN_DURATION = 3;
 
-      button.addEventListener("click", () => {
+      modalButton.addEventListener("click", () => {
         dialog.showModal();
       });
 
@@ -89,6 +99,11 @@
       for (let index = 0; index < 500; index++) {
         setTimeout(makeSnowflack(), 500 * index);
       }
+
+      toggleButton.addEventListener("click", () => {
+        // Toggle the dark-mode class on the body element
+        bodyElement.classList.toggle("dark-mode");
+      });
     </script>
   </body>
 </html>
